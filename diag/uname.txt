@@ -1,0 +1,2 @@
+Linux most2120 2.6.33.7.2-rt30 #2 PREEMPT RT Mon Feb 16 12:38:14 KST 2015 armv6l unknown
+Linux version 2.6.33.7.2-rt30 (dwlee@android-develop1) (gcc version 4.3.3 (GCC) ) #2 PREEMPT RT Mon Feb 16 12:38:14 KST 2015
