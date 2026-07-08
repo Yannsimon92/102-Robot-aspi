@@ -126,6 +126,19 @@ Le premier test caméra (négatif) reste le seul indice contre la base, et un **
 
 **Bilan provisoire** : module de roue gauche mort (certain) + émission IR de la base douteuse (à retester après réparation de la roue). Robot de 2016 avec ~216 h de nettoyage cumulées (`TOTAL_CLEANTIME` 779 369 s).
 
+### État des lieux à l'arrêt des investigations (08/07/2026) ⏸️
+
+Robot ouvert (capot inférieur déposé) : blocs roue L/R accessibles, chacun avec moteur DC + disque d'encodeur + carte encodeur (« Wheel », réf. EBR743xx) + microswitch de roue pendante. Carte mère LG EBR8146.
+
+- **Fait** : inspection visuelle des connecteurs moteur gauche → rien d'anormal constaté
+- **Non fait** (tests restants pour départager moteur / câblage / carte mère) :
+  1. Pile 9 V directement sur les cosses du moteur gauche → tourne ou pas
+  2. **Test croisé sans matériel** : brancher le moteur gauche sur le connecteur du moteur droit, puis « tourner à gauche » à la télécommande — si le moteur gauche tourne, c'est le driver de la carte mère qui est mort ; sinon c'est le moteur
+  3. Nettoyer le disque d'encodeur gauche + sa fourche optique (un encodeur aveugle peut faire couper le moteur par le firmware)
+  4. Roue à la main en observant l'arbre moteur : roue qui tourne sans l'arbre = pignon de réducteur cassé
+
+**Statut final provisoire** : roue gauche non motrice (certain, cause exacte non départagée : moteur, driver carte mère, encodeur ou réducteur) ; émission IR de la base douteuse (possiblement simple conséquence de la roue — voir « Cause unique ? »). Investigations suspendues par choix.
+
 ### Bonus découverts dans `rc.local` (mécanismes officiels du firmware)
 - Un dossier `blackbox/` à la racine de la clé déclenche `/usr/rscript/blackbox.sh` (export officiel de la boîte noire)
 - Un dossier `debug/` sur la clé active les core dumps vers la clé
