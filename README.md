@@ -1,6 +1,6 @@
 # Diagnostic LG Hom-Bot Square VR6347LV
 
-Diagnostic d'un **LG Hom-Bot Square VR6347LV** en panne (ne s'arrime plus à sa base, tourne en rond au lieu de nettoyer), mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware.
+Diagnostic (et réparation) d'un **LG Hom-Bot Square VR6347LV** en panne (ne s'arrimait plus à sa base, tournait en rond au lieu de nettoyer). Le diagnostic a été mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware — un vrai démontage n'a eu lieu qu'une fois la roue gauche formellement désignée comme coupable.
 
 À notre connaissance, c'est la première documentation publique de ce mécanisme sur le châssis **Square** (la doc communautaire existante — `pocketbroadcast/hombot-tools`, roboter-forum — ne couvrait que la gamme ronde VR63xx/VR64xx). Verdict : le mécanisme est **identique**.
 
@@ -8,10 +8,10 @@ Diagnostic d'un **LG Hom-Bot Square VR6347LV** en panne (ne s'arrime plus à sa 
 
 | Panne | Preuve | Statut |
 |---|---|---|
-| Le **module de roue gauche ne motrice plus** (le robot pivote sur place au lieu de nettoyer) | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant ; log de session vide (jamais de phase de nettoyage, pare-chocs muet) | **Certain** |
-| L'**arrimage à la base échoue** (`DockNoSinal` : aucun signal IR reçu à ~30 cm de la base) | Blackbox + test caméra de smartphone négatif sur les émetteurs de la base | **Cause à trancher** : base HS, ou simple conséquence de la roue (le faisceau IR est étroit ; l'alignement final exige la roue gauche) |
+| Le **module de roue gauche ne motrice plus** (le robot pivote sur place au lieu de nettoyer) | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant ; log de session vide (jamais de phase de nettoyage, pare-chocs muet) | ✅ **Résolu** — un fil du faisceau moteur/encodeur gauche était sectionné (frottement contre un arbre rotatif voisin). Ressoudé, gaine thermorétractable, fil reroutée à l'écart de l'arbre. Roue fonctionnelle depuis. |
+| L'**arrimage à la base échoue** (`DockNoSinal` : aucun signal IR reçu à ~30 cm de la base) | Blackbox + test caméra de smartphone négatif sur les émetteurs de la base | **À revérifier** : la chronologie de la blackbox montrait que tout cassait dans la même fenêtre de sessions (457→460), suggérant que le `DockNoSinal` n'était peut-être qu'une conséquence de la roue morte (alignement final impossible sans elle). À retester maintenant que la roue est réparée. |
 
-La chronologie de la blackbox montre que tout casse dans la même fenêtre de sessions (457 → 460, avec un log tronqué net en 459 — crash ou coupure brutale), ce qui plaide pour une **cause unique : la roue**. Verdict final après réparation du module de roue. Détail complet (méthode, journal des essais, analyse des logs, pistes de réparation) dans [DIAGNOSTIC.md](DIAGNOSTIC.md).
+Détail complet (méthode, journal des essais, analyse des logs, démontage, réparation) dans [DIAGNOSTIC.md](DIAGNOSTIC.md).
 
 ## Contenu du dépôt
 

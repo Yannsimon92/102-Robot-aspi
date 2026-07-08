@@ -91,12 +91,7 @@ Symptôme complémentaire signalé : au lancement d'un nettoyage, le robot pivot
 
 **Verdict : le module de roue gauche ne motrice plus** (moteur usé/HS, pignon de réducteur cassé, ou connecteur/driver). Cohérent avec le `Left Wheel Stuck` historique (session 427) et possiblement les `Wheeldrop Motion Fail` récents (module de roue défaillant → interrupteur de suspension déclenché en roulant).
 
-**Réparation :**
-1. Ouvrir le robot par le dessous, déposer le module de roue gauche (bloc autonome moteur + réducteur + suspension, quelques vis)
-2. Vérifier d'abord le connecteur vers la carte mère (débranché/oxydé = réparation gratuite)
-3. Tester le moteur en direct avec une pile/alim (5–12 V sur ses bornes) : il tourne → câblage/carte en cause ; il ne tourne pas → moteur HS
-4. Inspecter les pignons du réducteur (dents cassées = panne classique)
-5. Module de roue gauche de rechange : pièces d'occasion courantes (eBay/Leboncoin « LG Hom-Bot roue/wheel »), vérifier la compatibilité gamme Square
+**→ Cause confirmée et réparée** : voir « Réparation — roue gauche ✅ RÉSOLU » ci-dessous. Un simple fil sectionné par frottement, pas de pièce à remplacer.
 
 ### Cause unique ? (08/07/2026) — la panne « base » est peut-être une conséquence de la roue ⏳
 
@@ -126,22 +121,19 @@ Le premier test caméra (négatif) reste le seul indice contre la base, et un **
 
 **Bilan provisoire** : module de roue gauche mort (certain) + émission IR de la base douteuse (à retester après réparation de la roue). Robot de 2016 avec ~216 h de nettoyage cumulées (`TOTAL_CLEANTIME` 779 369 s).
 
-### Réparation — état d'avancement
+### Réparation — roue gauche ✅ RÉSOLU (08/07/2026)
 
 Robot ouvert (capot inférieur déposé) : blocs roue L/R accessibles, chacun avec moteur DC + disque d'encodeur + carte encodeur (« Wheel », réf. EBR743xx) + microswitch de roue pendante. Carte mère LG EBR8146.
 
 - [x] Démonter le robot (capot inférieur)
 - [x] Inspection visuelle des connecteurs moteur gauche
-- [ ] Test électrique des connecteurs (continuité / oxydation)
-- [ ] Démonter le module de roue gauche complet (moteur, encodeur, réducteur)
-- [ ] Démonter le module de roue droite pour comparaison
-- [ ] Pile 9 V directement sur les cosses du moteur gauche → tourne ou pas
-- [ ] **Test croisé sans matériel** : brancher le moteur gauche sur le connecteur du moteur droit, puis « tourner à gauche » à la télécommande — si le moteur gauche tourne, c'est le driver de la carte mère qui est mort ; sinon c'est le moteur
-- [ ] Nettoyer le disque d'encodeur gauche + sa fourche optique (un encodeur aveugle peut faire couper le moteur par le firmware)
-- [ ] Roue à la main en observant l'arbre moteur : roue qui tourne sans l'arbre = pignon de réducteur cassé
-- [ ] Retester le test caméra IR de la base dans le noir (voir « Cause unique ? »), une fois la roue réparée
+- [x] **Cause trouvée à l'œil, en 2e analyse des photos** : un fil du faisceau du moteur/encodeur gauche était **sectionné**, juste au niveau d'un arbre rotatif voisin — très probablement happé et cisaillé par cet arbre au fil des ~216h d'usage plutôt qu'un défaut de fabrication
+- [x] Dénudage des deux brins, torsadage, **soudure**, gaine thermorétractable, fil reroutée à l'écart de l'arbre pour éviter la récidive
+- [x] Test à la télécommande après réparation : **tourner à droite et tout droit fonctionnent à nouveau normalement**
 
-**Statut** : roue gauche non motrice (certain, cause exacte parmi moteur / driver carte mère / encodeur / réducteur — à départager par les tests ci-dessus) ; émission IR de la base douteuse (possiblement simple conséquence de la roue — voir « Cause unique ? »).
+**Verdict final : fil sectionné par frottement contre un arbre rotatif interne — réparé par soudure.** Pas besoin de remplacer moteur, encodeur ou carte mère. Tous les tests plus poussés (pile 9V, test croisé, réducteur) sont devenus inutiles : la cause était visuelle, avant même de les exécuter.
+
+- [ ] Retester le test caméra IR de la base dans le noir, maintenant que la roue est réparée (voir « Cause unique ? »)
 
 ### Bonus découverts dans `rc.local` (mécanismes officiels du firmware)
 - Un dossier `blackbox/` à la racine de la clé déclenche `/usr/rscript/blackbox.sh` (export officiel de la boîte noire)
