@@ -65,6 +65,18 @@ Preuves, par ordre d'importance :
 4. Toujours en échec → récepteurs IR du robot HS (carte capteurs du pare-chocs à inspecter).
 5. Au passage : nettoyer les roues latérales et vérifier le débattement de leurs interrupteurs (cause des `Wheeldrop Motion Fail`).
 
+### Conclusion (08/07/2026) — panne confirmée : la base n'émet plus d'IR ✅
+
+Test caméra validé par contrôle : la caméra frontale du téléphone voit l'IR d'une télécommande TV (points violacés), mais **rien au niveau de la fenêtre avant de la base**, y compris pendant un homing. (La caméra arrière filtre l'IR — premier test non probant.)
+
+Précision importante : le robot **charge** quand on le pose manuellement sur la base (sessions `Begin (Docked)`, batterie High dans les cleanlogs) → la base est alimentée. C'est donc la **carte d'émission IR de la base** qui est HS (LED émettrices ou soudures), pas son alimentation. Cohérent à 100 % avec le `DockNoSinal` de la blackbox et le symptôme initial.
+
+**Options de réparation :**
+1. Ouvrir la base (vis sous le socle) : inspection des LED IR et de leurs soudures (soudures sèches fréquentes). Une LED IR se teste au multimètre en polarisation directe, ou à la caméra frontale une fois alimentée. Réparation à quelques euros si LED/soudure en cause.
+2. Remplacer la base : pièce détachée « support/base de charge » pour VR6347LV (SAV LG, sites de pièces détachées, ou base d'occasion compatible gamme Square sur eBay/Leboncoin).
+
+En attendant : le robot reste utilisable en le posant manuellement sur la base pour la charge.
+
 ### Bonus découverts dans `rc.local` (mécanismes officiels du firmware)
 - Un dossier `blackbox/` à la racine de la clé déclenche `/usr/rscript/blackbox.sh` (export officiel de la boîte noire)
 - Un dossier `debug/` sur la clé active les core dumps vers la clé
