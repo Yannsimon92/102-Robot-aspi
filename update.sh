@@ -1,10 +1,17 @@
 #!/bin/sh
+#IS_HIT_UPDATE_SCRIPT=1
+# ^ Ligne-marqueur obligatoire : le firmware Hom-Bot refuse d'exécuter un
+#   update.sh qui ne la contient pas (cf. pocketbroadcast/hombot-tools).
 # Diagnostic LG Hom-Bot Square VR6347LV — lecture/copie uniquement.
 # A placer à la racine d'une clé USB FAT32.
 
-# Le point de montage de la clé n'est pas confirmé sur le châssis Square :
-# on écrit dans le dossier qui contient ce script, où qu'il soit monté.
-USB_PATH="$(cd "$(dirname "$0")" && pwd)"
+# Son de démarrage : confirme à l'oreille que le script tourne
+aplay -c 1 -r 16000 -f S16_LE /usr/SNDDATA/SND_BLACKBOX_LOADING_START.snd 2>/dev/null
+
+# La clé est montée sur /mnt/usb sur la gamme ronde ; pas confirmé sur le
+# châssis Square, donc on privilégie le dossier contenant ce script.
+USB_PATH="$(cd "$(dirname "$0")" 2>/dev/null && pwd)"
+[ -n "$USB_PATH" ] && [ -w "$USB_PATH" ] || USB_PATH="/mnt/usb"
 OUT="$USB_PATH/diag"
 mkdir -p "$OUT"
 
@@ -50,5 +57,8 @@ date > "$OUT/diag_done.txt"
 # sinon les fichiers peuvent être vides ou absents au retrait de la clé.
 sync
 sync
+
+# Son de fin : confirme que le script est allé au bout
+aplay -c 1 -r 16000 -f S16_LE /usr/SNDDATA/SND_BLACKBOX_LOADING_END.snd 2>/dev/null
 
 exit 0

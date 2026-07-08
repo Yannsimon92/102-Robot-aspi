@@ -20,6 +20,17 @@ Toute la documentation communautaire trouvée (repo GitHub `pocketbroadcast/homb
 ## Décision : diagnostic seul, PAS de hack Wi-Fi
 Uniquement extraction de logs via clé USB. Pas de dongle Wi-Fi, pas de SSH pour l'instant.
 
+## Journal des essais
+
+### Essai n°1 (08/07/2026) — échec, cause identifiée
+Le robot n'a pas réagi à la clé : `update.sh` intact, aucun fichier écrit. Cause trouvée ensuite dans `pocketbroadcast/hombot-tools` : le firmware exige une **ligne-marqueur `#IS_HIT_UPDATE_SCRIPT=1`** dans le script, sinon il l'ignore silencieusement. Le script initial ne l'avait pas — corrigé depuis.
+
+Enseignements des scripts d'exemple du repo (gamme ronde) :
+- Marqueur `#IS_HIT_UPDATE_SCRIPT=1` obligatoire (ligne 2, juste après le shebang)
+- Clé montée sur `/mnt/usb` (confirmé gamme ronde seulement)
+- Sons de début/fin jouables via `aplay /usr/SNDDATA/SND_BLACKBOX_LOADING_START.snd` / `..._END.snd` — intégrés au script pour avoir un retour sonore
+- Le README de hombot-tools recommande une **clé USB vide** ; l'essai n°1 a été fait sur une clé chargée (29 Go de données DJ). Si l'essai n°2 échoue malgré le marqueur, retenter avec une petite clé FAT32 vide avant de conclure.
+
 ## Script `update.sh`
 Voir [update.sh](update.sh) à la racine du projet (version lecture/copie uniquement, aucune commande destructrice).
 
