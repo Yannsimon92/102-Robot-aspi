@@ -74,7 +74,7 @@ nx-uart.0: ttyS0 at MMIO 0xc0016000 (irq = 10) is a UART0
 UART port init line=0
 nx-uart.1: ttyS1 at MMIO 0xc0016080 (irq = 34) is a UART1
 UART port init line=1
-index=0 buf_base = fee00000 dma_phys = 86958000
+index=0 buf_base = fee00000 dma_phys = 86938000
 index=1 buf_base = fee08000 dma_phys = 86980000
 usbcore: registered new interface driver ub
 vmem: nx_vmem_init
@@ -192,7 +192,7 @@ UBI: number of user volumes:     1
 UBI: available PEBs:             0
 UBI: total number of reserved PEBs: 304
 UBI: number of PEBs reserved for bad PEB handling: 3
-UBI: max/mean erase counter: 7545/5681
+UBI: max/mean erase counter: 7549/5681
 UBI: image sequence number: 0
 UBI: background thread "ubi_bgt1d" started, PID 395
 UBIFS: recovery needed

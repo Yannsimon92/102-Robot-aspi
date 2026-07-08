@@ -77,6 +77,29 @@ Précision importante : le robot **charge** quand on le pose manuellement sur la
 
 En attendant : le robot reste utilisable en le posant manuellement sur la base pour la charge.
 
+### Panne n°2 (08/07/2026) — le robot tourne en rond : roue gauche morte ✅
+
+Symptôme complémentaire signalé : au lancement d'un nettoyage, le robot pivote sur place (~40°, avant/arrière, vers la gauche) et ne nettoie jamais.
+
+**Session test 475** (nettoyage lancé ~4 min sans intervention) : log quasi vide — `Begin`, `VC_MAP_ROT_READY/ACK` (vision OK), puis **rien** pendant 3 min 40 (aucun `RobotPose`, aucun `Bumping`, aucune erreur). Le robot n'entre jamais en phase de nettoyage ; le pare-chocs est électriquement muet (pas grippé).
+
+**Test décisif — pilotage manuel à la télécommande** (commande moteur directe, sans navigation) :
+- Tourner à gauche : OK (mouvement porté par la roue droite)
+- Tourner à droite : ne répond pas (mouvement porté par la roue gauche)
+- Tout droit : dérive à gauche
+- Pas de cheveux dans les axes
+
+**Verdict : le module de roue gauche ne motrice plus** (moteur usé/HS, pignon de réducteur cassé, ou connecteur/driver). Cohérent avec le `Left Wheel Stuck` historique (session 427) et possiblement les `Wheeldrop Motion Fail` récents (module de roue défaillant → interrupteur de suspension déclenché en roulant).
+
+**Réparation :**
+1. Ouvrir le robot par le dessous, déposer le module de roue gauche (bloc autonome moteur + réducteur + suspension, quelques vis)
+2. Vérifier d'abord le connecteur vers la carte mère (débranché/oxydé = réparation gratuite)
+3. Tester le moteur en direct avec une pile/alim (5–12 V sur ses bornes) : il tourne → câblage/carte en cause ; il ne tourne pas → moteur HS
+4. Inspecter les pignons du réducteur (dents cassées = panne classique)
+5. Module de roue gauche de rechange : pièces d'occasion courantes (eBay/Leboncoin « LG Hom-Bot roue/wheel »), vérifier la compatibilité gamme Square
+
+**Bilan des deux pannes (indépendantes)** : base de charge qui n'émet plus d'IR + module de roue gauche mort. Robot de 2016 avec ~216 h de nettoyage cumulées (`TOTAL_CLEANTIME` 779 369 s) : usure de fin de vie classique, les deux réparations restent accessibles.
+
 ### Bonus découverts dans `rc.local` (mécanismes officiels du firmware)
 - Un dossier `blackbox/` à la racine de la clé déclenche `/usr/rscript/blackbox.sh` (export officiel de la boîte noire)
 - Un dossier `debug/` sur la clé active les core dumps vers la clé
