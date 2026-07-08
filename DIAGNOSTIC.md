@@ -65,7 +65,7 @@ Preuves, par ordre d'importance :
 4. Toujours en échec → récepteurs IR du robot HS (carte capteurs du pare-chocs à inspecter).
 5. Au passage : nettoyer les roues latérales et vérifier le débattement de leurs interrupteurs (cause des `Wheeldrop Motion Fail`).
 
-### Conclusion (08/07/2026) — panne confirmée : la base n'émet plus d'IR ✅
+### Conclusion (08/07/2026) — la base n'émet plus d'IR ⚠️ *(remis en question — voir « Cause unique ? » plus bas)*
 
 Test caméra validé par contrôle : la caméra frontale du téléphone voit l'IR d'une télécommande TV (points violacés), mais **rien au niveau de la fenêtre avant de la base**, y compris pendant un homing. (La caméra arrière filtre l'IR — premier test non probant.)
 
@@ -98,7 +98,33 @@ Symptôme complémentaire signalé : au lancement d'un nettoyage, le robot pivot
 4. Inspecter les pignons du réducteur (dents cassées = panne classique)
 5. Module de roue gauche de rechange : pièces d'occasion courantes (eBay/Leboncoin « LG Hom-Bot roue/wheel »), vérifier la compatibilité gamme Square
 
-**Bilan des deux pannes (indépendantes)** : base de charge qui n'émet plus d'IR + module de roue gauche mort. Robot de 2016 avec ~216 h de nettoyage cumulées (`TOTAL_CLEANTIME` 779 369 s) : usure de fin de vie classique, les deux réparations restent accessibles.
+### Cause unique ? (08/07/2026) — la panne « base » est peut-être une conséquence de la roue ⏳
+
+Deux pannes simultanées étant statistiquement suspectes, retour sur la chronologie de la blackbox :
+
+```
+451–456   arrimages automatiques réussis, y compris en batterie faible
+457       nettoyage complet, fini sur la base
+459       log TRONQUÉ en plein homing (crash ou coupure brutale)
+460       DockNoSinal → « Not Docking »
+461       log tronqué à nouveau
+466, 469  urgences Wheeldrop / roue
+→ plus aucun arrimage réussi ensuite
+```
+
+**Tout casse dans la même fenêtre de sessions** (457 → 460), avec un crash brut en 459. Or le faisceau IR de la base est étroit et directionnel : l'arrimage final exige que le robot balaye et s'aligne — exactement ce qu'une roue gauche morte empêche. Un `DockNoSinal` peut donc signifier « la base n'émet pas » **ou** « je n'ai pas pu orienter mes récepteurs vers le faisceau ». Le log ne tranche pas.
+
+Nuance : en session 460 le robot a navigué jusqu'à ~30 cm de la base avant l'échec — la roue fonctionnait donc encore partiellement (moteur à balais mourant = panne intermittente avant d'être franche).
+
+Le premier test caméra (négatif) reste le seul indice contre la base, et un **faux négatif est possible** (LED 940 nm faibles, lumière ambiante, angle). **Test décisif à refaire** :
+1. Pièce dans la pénombre
+2. Caméra frontale à 10–20 cm de la fenêtre avant de la base, base branchée, filmer 20–30 s
+3. Refaire pendant un homing actif (HOME à la télécommande, même si le robot tournoie)
+
+- IR visible dans le noir → base innocentée, **cause unique = module de roue gauche** ; sa réparation devrait tout régler
+- Toujours rien → deux pannes bien distinctes (chercher un événement déclencheur : chute, choc, surtension au moment de la session 459)
+
+**Bilan provisoire** : module de roue gauche mort (certain) + émission IR de la base douteuse (à retester après réparation de la roue). Robot de 2016 avec ~216 h de nettoyage cumulées (`TOTAL_CLEANTIME` 779 369 s).
 
 ### Bonus découverts dans `rc.local` (mécanismes officiels du firmware)
 - Un dossier `blackbox/` à la racine de la clé déclenche `/usr/rscript/blackbox.sh` (export officiel de la boîte noire)

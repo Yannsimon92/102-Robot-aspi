@@ -1,19 +1,17 @@
 # Diagnostic LG Hom-Bot Square VR6347LV
 
-Diagnostic complet d'un **LG Hom-Bot Square VR6347LV** en panne (ne s'arrime plus à sa base, tourne en rond au lieu de nettoyer), mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware.
+Diagnostic d'un **LG Hom-Bot Square VR6347LV** en panne (ne s'arrime plus à sa base, tourne en rond au lieu de nettoyer), mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware.
 
 À notre connaissance, c'est la première documentation publique de ce mécanisme sur le châssis **Square** (la doc communautaire existante — `pocketbroadcast/hombot-tools`, roboter-forum — ne couvrait que la gamme ronde VR63xx/VR64xx). Verdict : le mécanisme est **identique**.
 
 ## Résultat du diagnostic
 
-Deux pannes indépendantes, identifiées par la boîte noire du robot puis confirmées physiquement :
-
-| Panne | Preuve | Confirmation |
+| Panne | Preuve | Statut |
 |---|---|---|
-| La **base de charge n'émet plus d'IR** (le robot passe devant sans s'arrimer) | Événement `DockNoSinal` dans les logs à ~30 cm de la base ; la vision/SLAM fonctionne | Test caméra de smartphone (frontale) : aucun point IR sur la base, alors qu'elle charge encore par contact |
-| Le **module de roue gauche ne motrice plus** (le robot pivote sur place) | Session de test au log vide : jamais de phase de nettoyage, pare-chocs muet | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant |
+| Le **module de roue gauche ne motrice plus** (le robot pivote sur place au lieu de nettoyer) | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant ; log de session vide (jamais de phase de nettoyage, pare-chocs muet) | **Certain** |
+| L'**arrimage à la base échoue** (`DockNoSinal` : aucun signal IR reçu à ~30 cm de la base) | Blackbox + test caméra de smartphone négatif sur les émetteurs de la base | **Cause à trancher** : base HS, ou simple conséquence de la roue (le faisceau IR est étroit ; l'alignement final exige la roue gauche) |
 
-Le détail complet (méthode, journal des essais, analyse des logs, pistes de réparation) est dans [DIAGNOSTIC.md](DIAGNOSTIC.md).
+La chronologie de la blackbox montre que tout casse dans la même fenêtre de sessions (457 → 460, avec un log tronqué net en 459 — crash ou coupure brutale), ce qui plaide pour une **cause unique : la roue**. Verdict final après réparation du module de roue. Détail complet (méthode, journal des essais, analyse des logs, pistes de réparation) dans [DIAGNOSTIC.md](DIAGNOSTIC.md).
 
 ## Contenu du dépôt
 
