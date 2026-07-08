@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns="" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+    <parameter name="/broker_vision_micom_worker.Timeout" value="10" /> <!-- miliseconds -->
+    <parameter name="/broker_vision_micom_worker.TimeoutCount" value="50" /> <!-- the number of time-out count value -->
+    <parameter name="/broker_micom_vision_worker.Timeout" value="10" /> <!-- miliseconds -->
+    <parameter name="/broker_micom_vision_worker.TimeoutCount" value="50" /> <!-- the number of time-out count value -->
+  </parameterTable>
+
+</LGRP>

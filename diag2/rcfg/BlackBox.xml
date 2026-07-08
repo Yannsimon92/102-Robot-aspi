@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+    <Header xmlns="" copyright="LG Electronics">
+        The LGRP for HIT.
+        <Application name="lgrp" version="0.9 beta"/>
+    </Header>
+
+    <parameterTable>
+      <parameter name="SAVE_PATH" value="/usr/data/blackbox/" />
+      <parameter name="STATISTIC_FILENAME" value="cleaningrecord.stc" />
+      <parameter name="LOGFILE_PREFIX" value="cleanlog" />
+      <parameter name="MAXCOUNT_LOGFILE" value="50" />
+      <parameter name="MAXSIZE_LOGFILE" value="11010048" />
+
+      <parameter name="STATISTIC_COUNT1" value="RESET_COUNT" />
+      <parameter name="STATISTIC_COUNT2" value="KIDNAP_COUNT" />
+      <parameter name="STATISTIC_COUNT3" value="RECOVERY_OK" />
+      <parameter name="STATISTIC_COUNT4" value="RECOVERY_FAIL" />
+
+      <parameter name="STATISTIC_COUNT5" value="START_SB" />
+      <parameter name="STATISTIC_COUNT6" value="START_ZZ" />
+      <parameter name="STATISTIC_COUNT7" value="START_SPOT" />
+      <parameter name="STATISTIC_COUNT8" value="START_MACRO" />
+
+      <parameter name="STATISTIC_COUNT9" value="FINISH_SB" />
+      <parameter name="STATISTIC_COUNT10" value="FINISH_ZZ" />
+      <parameter name="STATISTIC_COUNT11" value="FINISH_SPOT" />
+      <parameter name="STATISTIC_COUNT12" value="FINISH_MACRO" />
+
+      <parameter name="STATISTIC_COUNT13" value="ERR_DUSTBIN" />
+      <parameter name="STATISTIC_COUNT14" value="ERR_ROBOTLIFT" />
+      <parameter name="STATISTIC_COUNT15" value="ERR_LWHEELSTUCK" />
+      <parameter name="STATISTIC_COUNT16" value="ERR_RWHEELSTUCK" />
+      <parameter name="STATISTIC_COUNT17" value="ERR_AGITATOR" />
+      <parameter name="STATISTIC_COUNT18" value="ERR_SUCTION" />
+      <parameter name="STATISTIC_COUNT19" value="ERR_ROBOTSTUCK" />
+      <parameter name="STATISTIC_COUNT20" value="ERR_WHEELDROP" />
+
+      <parameter name="STATISTIC_COUNT21" value="ERR_ENCODER_L" />
+      <parameter name="STATISTIC_COUNT22" value="ERR_ENCODER_R" />
+      <parameter name="STATISTIC_COUNT23" value="ERR_MOTOR_L" />
+      <parameter name="STATISTIC_COUNT24" value="ERR_MOTOR_R" />
+      <parameter name="STATISTIC_COUNT25" value="ERR_MOTOR_RCV" />
+
+      <parameter name="STATISTIC_COUNT26" value="START_RESERV" />
+
+      <parameter name="STATISTIC_COUNT27" value="VOICE_COMEHERE" />
+      <parameter name="STATISTIC_COUNT28" value="VOICE_START" />
+      <parameter name="STATISTIC_COUNT29" value="VOICE_PAUSE" />
+      <parameter name="STATISTIC_COUNT30" value="VOICE_SPOT" />
+      <parameter name="STATISTIC_COUNT31" value="VOICE_HOMING" />
+      <parameter name="STATISTIC_COUNT32" value="VOICE_WAIT" />
+
+      <parameter name="STATISTIC_COUNT33" value="CURRENTBUMPING" />
+
+      <parameter name="STATISTIC_TIME1" value="LAST_CLEAN" />
+      <parameter name="STATISTIC_TIME2" value="FIRST_BOOT" />
+
+      <parameter name="STATISTIC_CUMTIME1" value="TOTAL_CLEANTIME" />
+      <parameter name="STATISTIC_CUMTIME2" value="TOTAL_RUNTIME" />
+      <parameter name="STATISTIC_CUMTIME3" value="TOTAL_CARPET" />
+
+      <parameter name="MODELNO_PATH" value="/usr/tmp/version_main.dat" />
+      <parameter name="JIGFILE_PATH" value="/usr/data/jiginfo.dat" />
+
+      <parameter name="DIARY_FILE_PATH" value="/usr/data/blackbox/diary/" />
+      <parameter name="DIARY_FILE_PREFIX" value="diarylog" />
+    </parameterTable>
+
+</LGRP>

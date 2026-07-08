@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns="" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+	<parameter name="TTSDBPath" value="/usr/TTSDB/" />
+    <parameter name="PlaybackWorkerPriority" value="10" /> <!- per 100ms units: 10 is 10*100ms. ->
+  </parameterTable>
+
+</LGRP>

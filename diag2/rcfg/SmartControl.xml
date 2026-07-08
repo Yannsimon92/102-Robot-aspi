@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns=" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+    <parameter name="NICKNAME_SAVE_PATH" value="/usr/data/nickname.dat" />
+    <parameter name="DIAGNOSISFILE_SAVE_PATH" value="/usr/data/diagnosis.dat" />
+    <parameter name="ALIVE_MODE" value="0" />
+    <parameter name="DIARY_SAVE_PATH" value="/usr/data/blackbox/diary/" />
+    <parameter name="PARTNUM_FILE_PATH" value="/usr/rcfg/Name.dat" />
+    <parameter name="FILE_DOWNLOAD_PATH" value="/usr/data/" />
+    <parameter name="USR_DATA_PATH" value="/usr/data/" />
+    <parameter name="UPDATE_FLAGFILE_NAME" value="updateflag" />
+    <parameter name="FIRMWARE_UPDATE_FILE_PATH" value="/usr/data/firmwareupdate.dat" />
+	<parameter name="BLACKBOX_ARCHIVE_FILE_NAME" value="totalblackbox.tar.gz" />
+	<parameter name="SYSTEM_COMMAND_FOR_MAKE_ARCHIVE" value="tar cvzf " />
+  </parameterTable>
+
+</LGRP>

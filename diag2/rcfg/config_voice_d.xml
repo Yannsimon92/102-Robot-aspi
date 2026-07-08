@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+	<Header xmlns="" copyright="LG Electronics">
+		The LGRP for HIT.
+		<Application name="/lgrp" version="0.9 beta"/>
+	</Header>
+	<nodeTable>
+		<node name="/micom" id="1">
+			<connect name="/vision" path="server//UART2:230400" rx_buff_size="512" mode="async" priority="25" class="CUartConnect"/>
+			<connect name="/pc" path="link:/vision" rx_buff_size="0" mode="0" priority="0" class="0"/>
+		</node>
+		<node name="/vision" id="2">
+			<connect name="/micom" path="client///dev/ttymxc1:230400" rx_buff_size="512" mode="async" priority="28" class="CUartConnect"/>
+			<connect name="/pc" path="server//192.168.0.201:9000" rx_buff_size="1050000" mode="async" priority="0" class="CTcpConnect"/>
+		</node>
+		<node name="/pc" id="3">
+			<connect name="/vision" path="client//192.168.0.26:9000" rx_buff_size="1050000" mode="sync" priority="10" class="CTcpConnect"/>
+			<connect name="/micom" path="link:/vision" rx_buff_size="0" mode="0" priority="0" class="0"/>
+		</node>
+	</nodeTable>
+	<serviceTable>
+		<!-- LGRP Framework Services : ID Range (0~99) -->
+		<service name="/broker_micom_vision" id="01" priority="24" mailbox_count="256" mail_size="512" mailbox_size="4096" class="CBrokerService" node="/micom"/>
+		<service name="/broker_vision_micom" id="02" priority="27" mailbox_count="128" mail_size="512" mailbox_size="4096" class="CBrokerService" node="/vision"/>
+		<service name="/broker_vision_pc" id="03" priority="17" mailbox_count="256" mail_size="1048576" mailbox_size="5242880" class="CBrokerService" node="/vision"/>
+		<service name="/broker_pc_vision" id="04" priority="17" mailbox_count="256" mail_size="1048576" mailbox_size="5242880" class="CBrokerService" node="/pc"/>
+		<service name="/collector_micom" id="11" priority="0" mailbox_count="64" mail_size="512" mailbox_size="1024" class="CDebugCollector" node="/micom">
+			<parameterFile file="collector.xml"/>
+		</service>
+		<service name="/collector_vision" id="12" priority="0" mailbox_count="64" mail_size="512" mailbox_size="1024" class="CDebugCollector" node="/vision">
+			<parameterFile file="collector.xml"/>
+		</service>
+		<service name="/collector_pc" id="13" priority="0" mailbox_count="64" mail_size="512" mailbox_size="1024" class="CDebugCollector" node="/pc">
+			<parameterFile file="collector.xml"/>
+		</service>
+		<service name="/logger_vision" id="20" priority="0" mailbox_count="1024" mail_size="1048576" mailbox_size="5242880" class="CDebugLogger" node="/vision"/>
+		<service name="/logger_pc" id="21" priority="0" mailbox_count="1024" mail_size="1048576" mailbox_size="5242880" class="CDebugLogger" node="/pc"/>
+		<service name="/player" id="30" priority="0" mailbox_count="128" mail_size="1024" mailbox_size="1024" class="CDebugPlayer" node="/pc"/>
+		<service name="/time" id="90" priority="50" mailbox_count="16" mail_size="128" mailbox_size="1024" class="CTimeService" node="/vision">
+			<parameterFile file="time.xml"/>
+		</service>
+		<!--LGRP Framework Services-->
+		<service name="/DAS" id="110" priority="10" mailbox_count="64" mail_size="256" mailbox_size="4096" class="CDataAccessService" node="/micom"/>
+		<service name="/Input" id="111" priority="16" mailbox_count="16" mail_size="1024" mailbox_size="4096" class="CInputManagerService" node="/vision">
+			<parameterFile file="Input.xml"/>
+		</service>
+		<service name="/Event" id="112" priority="15" mailbox_count="24" mail_size="137000" mailbox_size="1370000" class="CEventService" node="/vision">
+			<parameterFile file="App.xml"/>
+			<parameterFile file="Function.xml"/>
+		</service>
+		<service name="/Motion" id="113" priority="18" mailbox_count="20" mail_size="1024" mailbox_size="4096" class="CMotionService" node="/vision">
+			<parameterFile file="Motion.xml"/>
+		</service>
+		<service name="/Navi" id="114" priority="14" mailbox_count="22" mail_size="137000" mailbox_size="1370000" class="CNavigationService" node="/vision">
+			<parameterFile file="Navi.xml"/>
+			<parameterFile file="Motion.xml"/>
+			<parameterFile file="App.xml"/>
+		</service>
+		<service name="/Planner" id="115" priority="0" mailbox_count="24" mail_size="137000" mailbox_size="1370000" class="CPlanningService" node="/vision">
+			<parameterFile file="Planner.xml"/>
+			<parameterFile file="App.xml"/>
+		</service>
+		<service name="/App" id="116" priority="10" mailbox_count="14" mail_size="1024" mailbox_size="4096" class="CHitApplication" node="/vision">
+			<parameterFile file="SoundList.xml"/>
+			<parameterFile file="App.xml"/>
+		</service>
+		<service name="/SLAM" id="117" priority="0" mailbox_count="2000" mail_size="200000" mailbox_size="600000" class="CSLAMService" node="/vision">
+			<parameterFile file="SLAM.xml"/>
+			<parameterFile file="SLAM_control.xml"/>
+		</service>
+		<service name="/Camera" id="118" priority="8" mailbox_count="10" mail_size="1024" mailbox_size="4096" class="CCameraService" node="/vision">
+			<parameterFile file="Camera.xml"/>
+		</service>
+		<service name="/Playback" id="119" priority="8" mailbox_count="8" mail_size="1024" mailbox_size="4096" class="CPlaybackService" node="/vision">
+			<parameterFile file="playback.xml"/>
+		</service>
+		<service name="/Jig_vision" id="120" priority="8" mailbox_count="2000" mail_size="200000" mailbox_size="600000" class="CJigService" node="/vision">
+			<parameterFile file="Jig_vision.xml"/>
+			<parameterFile file="SoundList.xml"/>
+		</service>
+		<service name="/JigCameraTest" id="121" priority="0" mailbox_count="2000" mail_size="200000" mailbox_size="600000" class="CJigCameraTestService" node="/vision">
+			<parameterFile file="SLAM.xml"/>
+			<parameterFile file="JigCameraTest.xml"/>
+		</service>
+		<service name="/BlackBox" id="122" priority="0" mailbox_count="128" mail_size="266240" mailbox_size="266240" class="CBlackBoxService">
+			<parameterFile file="BlackBox.xml"/>
+		</service>
+		<service name="/Jig_micom" id="123" priority="8" mailbox_count="2000" mail_size="256" mailbox_size="1024" class="CJigService" node="/micom">
+			<parameterFile file="Jig_micom.xml"/>
+		</service>
+		<service name="/Watchdog" id="255" priority="8" mailbox_count="64" mail_size="256" mailbox_size="4096" class="CWatchdogService" node="/micom"/>
+		<service name="/Sound" id="231" priority="0" mailbox_count="8" mail_size="42960" mailbox_size="42960" class="CSoundService" node="/vision">		
+			<parameterFile file="Sound.xml"/>
+		</service>
+		<service name="/SSL" id="232" priority="0" mailbox_count="8" mail_size="257" mailbox_size="12000" class="CSSLService" node="/vision">
+			<parameterFile file="Sound.xml"/>
+		</service>
+		<service name="/VR" id="233" priority="0" mailbox_count="4296" mail_size="42960" mailbox_size="42960" class="CVRService" node="/vision">
+			<parameterFile file="Sound.xml"/>
+		</service>
+		<service name="/Keyword" id="234" priority="0" mailbox_count="4296" mail_size="4296" mailbox_size="4296" class="CKeywordService" node="/vision">		
+			<parameterFile file="Sound.xml"/>
+			<parameterFile file="Function.xml"/>
+		</service>
+		<service name="/LS" id="236" priority="0" mailbox_count="4296" mail_size="42960" mailbox_size="42960" class="CLSService" node="/vision">
+			<parameterFile file="Sound.xml"/>
+		</service>
+	</serviceTable>
+	<topicTable>
+		<topic name="Timer" id="10" publisher="/time"/>
+		<topic name="Sensor" id="101" publisher="/DAS" ack="false"/>
+		<topic name="Timetick" id="102"/>
+		<topic name="DasEvent" id="103"/>
+		<topic name="SensorAccBump" id="104"/>
+		<topic name="RawSensor" id="105" ack="false"/>
+		<topic name="ExtSensor" id="106" ack="false"/>
+		<topic name="MotionState" id="110" publisher="/Motion"/>
+		<topic name="WheeldropMotionFail" id="111" publisher="/Motion"/>
+		<topic name="UserInput" id="120" publisher="/Input"/>
+		<topic name="PlanState" id="130" publisher="/Planner"/>
+		<topic name="BHVRState" id="140" publisher="/Navi"/>
+		<topic name="CommandTransfer" id="141"/>
+		<topic name="ResponseBehavior" id="142"/>
+		<topic name="CheckPoint" id="143"/>
+		<topic name="DiagnosisResult" id="144"/>
+		<topic name="AutoDocking" id="145"/>
+		<topic name="BehaviorTransfer" id="146"/>
+		<topic name="AroundState" id="147"/>
+		<topic name="CameraState" id="150" publisher="/Camera"/>
+		<topic name="CameraGrabImage" id="151"/>
+		<topic name="SLAM_KREvent" id="160" publisher="/SLAM"/>
+		<topic name="SLAM_VCMapRotationEvent" id="161"/>
+		<topic name="SLAM_MapReuseEvent" id="162"/>
+		<topic name="JigCameraTest_CaptureAckEvent" id="170" publisher="/JigCameraTest" ack="false"/>
+		<topic name="JigCameraTest_TestResultEvent" id="171" publisher="/JigCameraTest" ack="false"/>
+		<topic name="BackupData" id="180" publisher="/Watchdog"/>
+		<topic name="Event" id="190" publisher="/Event"/>
+		<topic name="PlaybackState" id="204" publisher="/Playback"/>
+		<topic name="SoundAck"   id="241" publisher="/Sound" ack="false"/>
+		<topic name="SSLResult" id="242" publisher="/SSL" ack="false"/>
+		<topic name="VRResult" id="243" publisher="/VR" ack="false"/>
+		<topic name="Keyword" id="244" publisher="/Keyword" ack="false"/>
+		<topic name="LogResult" id="246" publisher="/LS" ack="false"/>
+		<topic name="BlackboxMessage" id="197" publisher="/BlackBox"/>
+	</topicTable>
+</LGRP>
+

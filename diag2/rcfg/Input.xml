@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns="" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+    <parameter name="REMOCON_STOS_MARGIN_COUNT" value="10" />
+    <parameter name="REMOCON_DOWNLONG_CHECK_COUNT" value="50" />
+    <parameter name="TOUCH_CLICK_CHECK_COUNT" value="2" />
+    <parameter name="TOUCH_UP_CHECK_COUNT" value="50" />
+    <parameter name="INPUT_DOWNLONG_COUNT" value="5" />
+    <parameter name="RPATTERN_DEF0" value="CDCDCEEE" />
+    <parameter name="RPARAM_CODE0" value="2" />
+    <parameter name="RPATTERN_DEF1" value="CCCDDCCCEEE" />
+    <parameter name="RPARAM_CODE1" value="0" />
+    <parameter name="RPATTERN_DEF2" value="DDCCCDDEEE" />
+    <parameter name="RPARAM_CODE2" value="1" />
+    <parameter name="RPATTERN_DEF3" value="FFFCCCFFFEEE" />
+    <parameter name="RPARAM_SCRIPT3" value="./test.sh" />
+    <parameter name="RPATTERN_DEF4" value="DDDDFFEEE" />
+    <parameter name="RPARAM_CODE4" value="3" />
+	<parameter name="RPATTERN_DEF5" value="DDCCCDDHHH" />
+    <parameter name="RPARAM_CODE5" value="5" />
+  </parameterTable>
+
+</LGRP>

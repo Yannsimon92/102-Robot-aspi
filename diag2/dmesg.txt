@@ -1,0 +1,230 @@
+Linux version 2.6.33.7.2-rt30 (dwlee@android-develop1, At revision 174(R247)) (gcc version 4.3.3 (GCC) ) #2 PREEMPT RT Mon Feb 16 12:38:14 KST 2015
+CPU: ARMv6-compatible processor [410fb767] revision 7 (ARMv7), cr=00c5387f
+CPU: VIPT nonaliasing data cache, VIPT nonaliasing instruction cache
+Machine: RK_HIT_V2
+Ignoring unrecognised tag 0x00000000
+Memory policy: ECC disabled, Data cache writeback
+On node 0 totalpages: 28672
+free_area_init_node: node 0, pgdat c0417c08, node_mem_map c045f000
+  Normal zone: 224 pages used for memmap
+  Normal zone: 0 pages reserved
+  Normal zone: 28448 pages, LIFO batch:7
+k_alloc: 0xc0000000 ~ 0xc7000000, 112MB
+v_alloc: 0xc7800000 ~ 0xe0000000, 392MB
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 28448
+Kernel command line: noinitrd console=ttyS0,115200 root=/dev/mtdblock2 rootfstype=squashfs
+PID hash table entries: 512 (order: -1, 2048 bytes)
+Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+Memory: 112MB = 112MB total
+Memory: 109056KB available (3884K code, 453K data, 96K init, 0K highmem)
+Real-Time Preemption Support (C) 2004-2007 Ingo Molnar
+Experimental preemptable hierarchical RCU implementation.
+NR_IRQS:256
+Trying to install chained interrupt handler for IRQ3
+Trying to install chained interrupt handler for IRQ13
+Trying to install chained interrupt handler for IRQ50
+timer: src ch(0), freq:3000000, mult:349525333
+timer: evt ch(1), freq:1000000, HZ:100, mult:4294967 
+serial init:port=0 baud=115200 parity=0 data=3 stop=0 clk=461538 quot=4 trigger=4
+console [ttyS0] enabled
+Calibrating delay loop... 699.59 BogoMIPS (lpj=3497984)
+Security Framework initialized
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+NET: Registered protocol family 16
+DDR Memory PAD(STR=Weak ODT=Disable), NXP2120 DDR PAD(STR=37.5 ODT=75)
+nxp2120-dtk : done board initialize ...
+plat: add device serial (array:2)
+plat: add device usb ehci
+plat: add device i2c bus (array:2) 
+plat: add device dm9000 net
+plat: add device v4l2 camera
+bio: create slab <bio-0> at 0
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+Advanced Linux Sound Architecture Driver Version 1.0.21.
+Switching to clocksource timer_source
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 4096 (order: 3, 32768 bytes)
+TCP bind hash table entries: 4096 (order: 4, 114688 bytes)
+TCP: Hash tables configured (established 4096 bind 4096)
+TCP reno registered
+UDP hash table entries: 64 (order: 0, 4096 bytes)
+UDP-Lite hash table entries: 64 (order: 0, 4096 bytes)
+NET: Registered protocol family 1
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+squashfs: version 4.0 (2009/01/31) Phillip Lougher
+yaffs Feb 16 2015 12:37:57 Installing. 
+msgmni has been set to 213
+alg: No test for cipher_null (cipher_null-generic)
+alg: No test for ecb(cipher_null) (ecb-cipher_null)
+alg: No test for digest_null (digest_null-generic)
+alg: No test for compress_null (compress_null-generic)
+alg: No test for stdrng (krng)
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+GPLED device is registered and ready to use.
+nx-uart.0: ttyS0 at MMIO 0xc0016000 (irq = 10) is a UART0
+UART port init line=0
+nx-uart.1: ttyS1 at MMIO 0xc0016080 (irq = 34) is a UART1
+UART port init line=1
+index=0 buf_base = fee00000 dma_phys = 86958000
+index=1 buf_base = fee08000 dma_phys = 86980000
+usbcore: registered new interface driver ub
+vmem: nx_vmem_init
+vmem: nx_vmem_probe
+vmem: init_vmem_node (1)
+vmem: [0] base:0x86400000, size:0x01c00000, ext:0x02000000 
+vmem: seg base:0x86000000, size:0x01000000, w:    4096, h:    4096, r:1024 
+vmem: seg base:0x87000000, size:0x01000000, w:    4096, h:    4096, r:   0 
+vmem: map[0]: p 0x86400000 -> v 0xe0000000 len=28M
+vmem: DONE : nx_vmem_probe
+Searching NAND device ...
+NAND ecc: Hardware 4 bit 
+NAND device: Manufacturer ID: 0x01, Chip ID: 0xf1 (AMD NAND 128MiB 3,3V 8-bit)
+Scanning device for bad blocks
+cmdlinepart partition parsing not available
+Creating 5 MTD partitions on "nx-nand":
+0x000000000000-0x000000040000 : "Bootloader"
+0x000000040000-0x000000400000 : "nand.kernel"
+0x000000400000-0x000000c00000 : "nand.rootfs"
+0x000000c00000-0x000005a00000 : "nand.userfs"
+0x000005a00000-0x000008000000 : "nand.data"
+Using static partition definition
+dm9000 Ethernet Driver, V1.31
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: read wrong id 0x2d2d2d2d
+dm9000 dm9000.0: wrong id: 0x2d2d2d2d
+dm9000 dm9000.0: not found (-19).
+usbcore: registered new interface driver cdc_ether
+usbcore: registered new interface driver cdc_eem
+usbcore: registered new interface driver rndis_host
+usbcore: registered new interface driver cdc_subset
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+nx-ehci: usb host EHCI version 0x00000110
+nx-ehci nx-ehci.0: Nexell EHCI 
+nx-ehci nx-ehci.0: new USB bus registered, assigned bus number 1
+nx-ehci nx-ehci.0: irq 51, io mem 0xc000d000
+nx-ehci nx-ehci.0: USB 0.0 started, EHCI 1.00
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+mice: PS/2 mouse device common for all mice
+i2c /dev entries driver
+nx-i2c.0:   341796 hz [pclk=87500000, src=256, scale= 1][irq] 
+nx-i2c.1:   341796 hz [pclk=87500000, src=256, scale= 1][irq] 
+Linux video capture interface: v2.00
+nx-vip: controller 0 registered successfully
+OmniVision OV7675 driver initialized
+OV7675_i2c_probe client->addr=21
+OV7675_COM1 : after val=40
+cpuidle: using governor ladder
+cpuidle: using governor menu
+WM8960 I2C Codec 0-001a: No platform data supplied
+usb 1-1: new high speed USB device using nx-ehci and address 2
+ uba: uba1
+No device for DAI nx-i2s
+I2S audio clock enable = c
+asoc: WM8960 <-> nx-i2s mapping ok
+ALSA device list:
+  #0: most-wm8960 (WM8960)
+TCP cubic registered
+NET: Registered protocol family 17
+NET: Registered protocol family 15
+lib80211: common routines for IEEE802.11 drivers
+lib80211_crypt: registered algorithm 'NULL'
+VFP support v0.3: implementor 41 architecture 1 part 20 variant b rev 5
+mtd->name=nand.rootfs
+VFS: Mounted root (squashfs filesystem) readonly on device 31:2.
+Freeing init memory: 96K
+serial init:port=0 baud=115200 parity=0 data=3 stop=0 clk=461538 quot=4 trigger=4
+serial init:port=0 baud=115200 parity=0 data=3 stop=0 clk=461538 quot=4 trigger=4
+UBIFS error (pid 380): ubifs_get_sb: cannot open "/dev/ubi0_0", error -22
+UBI: attaching mtd3 to ubi0
+UBI: physical eraseblock size:   131072 bytes (128 KiB)
+UBI: logical eraseblock size:    129024 bytes
+UBI: smallest flash I/O unit:    2048
+UBI: sub-page size:              512
+UBI: VID header offset:          512 (aligned 512)
+UBI: data offset:                2048
+UBI: attached mtd3 to ubi0
+UBI: MTD device name:            "nand.userfs"
+UBI: MTD device size:            78 MiB
+UBI: number of good PEBs:        624
+UBI: number of bad PEBs:         0
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     1
+UBI: available PEBs:             0
+UBI: total number of reserved PEBs: 624
+UBI: number of PEBs reserved for bad PEB handling: 6
+UBI: max/mean erase counter: 35/1
+UBI: image sequence number: 0
+UBI: background thread "ubi_bgt0d" started, PID 391
+UBI: attaching mtd4 to ubi1
+UBI: physical eraseblock size:   131072 bytes (128 KiB)
+UBI: logical eraseblock size:    129024 bytes
+UBI: smallest flash I/O unit:    2048
+UBI: sub-page size:              512
+UBI: VID header offset:          512 (aligned 512)
+UBI: data offset:                2048
+UBI: attached mtd4 to ubi1
+UBI: MTD device name:            "nand.data"
+UBI: MTD device size:            38 MiB
+UBI: number of good PEBs:        304
+UBI: number of bad PEBs:         0
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     1
+UBI: available PEBs:             0
+UBI: total number of reserved PEBs: 304
+UBI: number of PEBs reserved for bad PEB handling: 3
+UBI: max/mean erase counter: 7545/5681
+UBI: image sequence number: 0
+UBI: background thread "ubi_bgt1d" started, PID 395
+UBIFS: recovery needed
+UBIFS: recovery completed
+UBIFS: mounted UBI device 0, volume 0, name "user"
+UBIFS: file system size:   78059520 bytes (76230 KiB, 74 MiB, 605 LEBs)
+UBIFS: journal size:       3870720 bytes (3780 KiB, 3 MiB, 30 LEBs)
+UBIFS: media format:       w4/r0 (latest is w4/r0)
+UBIFS: default compressor: lzo
+UBIFS: reserved for root:  3686944 bytes (3600 KiB)
+UBIFS: recovery needed
+UBIFS: recovery completed
+UBIFS: mounted UBI device 1, volume 0, name "data"
+UBIFS: file system size:   37158912 bytes (36288 KiB, 35 MiB, 288 LEBs)
+UBIFS: journal size:       1806336 bytes (1764 KiB, 1 MiB, 14 LEBs)
+UBIFS: media format:       w4/r0 (latest is w4/r0)
+UBIFS: default compressor: lzo
+UBIFS: reserved for root:  1755106 bytes (1713 KiB)
+rtusb init --->
+usbcore: registered new interface driver rt2870
+usbcore: deregistering interface driver rt2870
+- rtusb exit
+rtusb init --->
+usbcore: registered new interface driver rt2870
+usbcore: deregistering interface driver rt2870
+- rtusb exit
+rtusb init rt2870 --->
+usbcore: registered new interface driver rt2870
+usbcore: deregistering interface driver rt2870
+- rtusb exit
+usbcore: registered new interface driver rtl8192cu
+usbcore: deregistering interface driver rtl8192cu
+rtd dma_width = 2
+PCM OUTPUT BUFFER UNDERRUN
+PCM INPUT BUFFER OVERRUN

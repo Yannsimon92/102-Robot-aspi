@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns="" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+    <parameter name="MACRO_DISTANCE_OF_CLOSED_LOOP" value="1000" />
+    <parameter name="TRAP_SMALLREGION_CELLCOUNTMAX" value="368" />
+    <!-- Max Small Region(Queen size bed) = 1600mm x 2300mm : 16*23 = 368 -->
+    <parameter name="TRAP_TIMEOUT_SMALLREGION_SECOND" value="180" />
+    <parameter name="TRAP_TIMEOUT_LARGEREGION_SECOND" value="300" />
+    <parameter name="TRAP_PERIODIC_RESPONSE_SECOND" value="5" />
+    <parameter name="TRAP_DISTTOWALL_SMALLREGION_MM" value="20" />
+    <parameter name="TRAP_DISTTOWALL_LARGEREGION_MM" value="30" />
+    <parameter name="TRAP_DESIREDVELOCITY_SMALLREGION_MMS" value="200" />
+    <parameter name="TRAP_DESIREDVELOCITY_LARGEREGION_MMS" value="250" />
+	<parameter name="TRAP_SEQ0_LARGE_TIMEOUT_SECOND" value="300" />
+	<parameter name="TRAP_SEQ0_LARGE_DESIREDVELOCITY_MMS" value="300" />
+	<parameter name="TRAP_SEQ0_LARGE_DISTTOWALL_MM" value="18" />
+	<parameter name="TRAP_SEQ1_LARGE_TIMEOUT_SECOND" value="300" />
+	<parameter name="TRAP_SEQ1_LARGE_DESIREDVELOCITY_MMS" value="250" />
+	<parameter name="TRAP_SEQ1_LARGE_DISTTOWALL_MM" value="18" />
+	<parameter name="TRAP_SEQ2_LARGE_TIMEOUT_SECOND" value="300" />
+	<parameter name="TRAP_SEQ2_LARGE_DESIREDVELOCITY_MMS" value="200" />
+	<parameter name="TRAP_SEQ2_LARGE_DISTTOWALL_MM" value="18" />
+	<parameter name="TRAP_SEQ0_SMALL_TIMEOUT_SECOND" value="180" />
+	<parameter name="TRAP_SEQ0_SMALL_DESIREDVELOCITY_MMS" value="200" />
+	<parameter name="TRAP_SEQ0_SMALL_DISTTOWALL_MM" value="18" />
+	<parameter name="TRAP_SEQ1_SMALL_TIMEOUT_SECOND" value="180" />
+	<parameter name="TRAP_SEQ1_SMALL_DESIREDVELOCITY_MMS" value="200" />
+	<parameter name="TRAP_SEQ1_SMALL_DISTTOWALL_MM" value="16" />
+  </parameterTable>
+
+</LGRP>

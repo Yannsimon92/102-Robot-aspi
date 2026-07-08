@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns=" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+    <parameter name="CORNER_COLUMN_NUM" value="6" />
+    <parameter name="CORNER_ROW_NUM" value="4" />
+    <parameter name="SQUARE_LENGTH (mm)" value="100" />
+    <parameter name="PATTERN_IMAGE_NUM" value="2" />
+    <parameter name="IMAGE_WIDTH" value="320" />
+    <parameter name="IMAGE_HEIGHT" value="240" />
+  </parameterTable>
+
+</LGRP>

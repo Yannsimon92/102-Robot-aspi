@@ -40,8 +40,36 @@ Avec le marqueur, le script a tourné jusqu'au bout (dump complet dans [diag/](d
 - **Boîte noire trouvée dans `/usr/data/blackbox`** : `LastMainboardError.txt`, cartes `MAPDATA*.blk`, journaux de session `cleanlog*.bbl` (sessions 421→470)
 - **Indice fort** : les cleanlogs des sessions récentes (458→470) font tous < 700 octets contre 20–60 Ko avant → les sessions avortent quasi immédiatement
 
-### Phase 3 en cours
-`update.sh` réécrit pour rapatrier `/usr/data` complet (blackbox + SLAM), `/usr/rcfg` (config) et `rc.local` → dossier `diag2/` sur la clé (~20 Mo).
+### Essai n°3 (08/07/2026) — blackbox récupérée, cause identifiée ✅
+
+Dump complet dans [diag2/](diag2/) (cartes, SLAM, trajectoires et n° de série exclus du repo public via `.gitignore`). Les `cleanlog*.bbl` sont du **CSV texte lisible** : un événement horodaté par ligne.
+
+**Verdict : le robot ne reçoit aucun signal infrarouge de la base.**
+
+Preuves, par ordre d'importance :
+1. **Session 460** : en phase homing, le robot logge `POSI,DockNoSinal, 527, -252, ...` puis termine par `End Cleaning (Not Docking)`. Les sessions qui démarrent arrimées montrent la base vers (550, 50) : le robot était donc à ~30 cm de la base **sans capter son faisceau**.
+2. **La vision/SLAM fonctionne** dans les sessions récentes (`VC_MAP_ROT_READY` présent en 459, 460, 467, 469) : la caméra plafond localise bien le robot, qui *navigue* correctement jusqu'à la zone de la base. Le guidage terminal IR est le seul maillon mort.
+3. `cleaningrecord.stc` : 5 nettoyages démarrés / 0 terminés depuis le dernier reset des stats, 1 kidnap avec échec de récupération.
+4. Historique ancien sain : 26 sessions terminées `(Docked)` — le mécanisme d'arrimage fonctionnait.
+
+Éléments secondaires :
+- `LastMainboardError.txt` : « Vision board was reset » — mais horodaté à l'époque de la session 427 (milieu d'historique), et la vision marche dans les sessions récentes → **pas la cause actuelle**.
+- 2 arrêts d'urgence récents `Wheeldrop Motion Fail` (sessions 466, 469) : capteur de roue pendante déclenché en roulant — soit robot soulevé pendant les tests, soit interrupteurs de roues encrassés. À surveiller, mais distinct du problème d'arrimage.
+- Sessions 459 et 461 : logs tronqués sans ligne de fin (coupure d'alimentation ou crash applicatif).
+- Firmware rev. 16552 (2015/11/12), bootloader 201, modèle n° 1762.
+
+**Prochaines vérifications physiques (dans l'ordre) :**
+1. La base est-elle alimentée ? (LED allumée, prise testée)
+2. **Test caméra de smartphone** face à la fenêtre avant de la base (caméra frontale de préférence, pas de filtre IR) : les émetteurs IR doivent apparaître comme des points lumineux violacés. Absents → la base n'émet plus (panne base/alim) → réparer ou remplacer la base.
+3. Si la base émet : nettoyer soigneusement les fenêtres IR du robot (bandeau du pare-chocs avant) à l'alcool isopropylique. Retester le homing.
+4. Toujours en échec → récepteurs IR du robot HS (carte capteurs du pare-chocs à inspecter).
+5. Au passage : nettoyer les roues latérales et vérifier le débattement de leurs interrupteurs (cause des `Wheeldrop Motion Fail`).
+
+### Bonus découverts dans `rc.local` (mécanismes officiels du firmware)
+- Un dossier `blackbox/` à la racine de la clé déclenche `/usr/rscript/blackbox.sh` (export officiel de la boîte noire)
+- Un dossier `debug/` sur la clé active les core dumps vers la clé
+- Un `update.dat` à la racine est traité par `update.axf` (mise à jour firmware officielle)
+- Si un dongle Wi-Fi est détecté au boot, `dropbear` (serveur SSH) est lancé — confirme que le hack Wi-Fi de la gamme ronde s'applique tel quel au Square
 
 ## Script `update.sh`
 Voir [update.sh](update.sh) à la racine du projet (version lecture/copie uniquement, aucune commande destructrice).

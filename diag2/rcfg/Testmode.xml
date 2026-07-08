@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns="" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+    <parameter name="TESTMODE1_WHEELSPEED" value="300" />
+    <parameter name="TESTMODE1_AGITATORSPEED1" value="1000" />
+    <parameter name="TESTMODE1_SUCTIONSPEED1" value="8500" />
+    <parameter name="TESTMODE1_AGITATORSPEED2" value="1200" />
+    <parameter name="TESTMODE1_SUCTIONSPEED2" value="10000" />
+    <parameter name="TESTMODE2_WHEELSPEED" value="350" />
+    <parameter name="TESTMODE2_AGITATORSPEED1" value="1000" />
+    <parameter name="TESTMODE2_SUCTIONSPEED1" value="8500" />
+    <parameter name="TESTMODE2_AGITATORSPEED2" value="1200" />
+    <parameter name="TESTMODE2_SUCTIONSPEED2" value="10000" />
+  </parameterTable>
+
+</LGRP>

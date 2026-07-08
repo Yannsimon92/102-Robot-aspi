@@ -1,0 +1,7 @@
+# Données privées du robot — ne pas publier sur un repo public :
+# cartes du logement, base SLAM, trajectoires de nettoyage, n° de série
+diag2/usr_data/slam/
+diag2/usr_data/MapReuseNavi
+diag2/usr_data/blackbox/*.blk
+diag2/usr_data/blackbox/*.bbl
+diag2/usr_data/product_data.dat

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns="" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+	<parameter name="CONNECT0" value="CTcpConnect" />
+	<parameter name="CONNECT1" value="CTcpConnect" />
+	<parameter name="CONNECT2" value="CTcpConnect" />
+	<parameter name="CONNECT3" value="CTcpConnect" />
+	<parameter name="CONNECT4" value="CTcpConnect" />
+  	<parameter name="CTcpConnect0" value="client//192.168.0.100:9010" />
+  	<parameter name="CTcpConnect1" value="client//192.168.0.110:9010" />
+  	<parameter name="CTcpConnect2" value="client//192.168.0.120:9010" />
+  	<parameter name="CTcpConnect3" value="client//192.168.0.130:9010" />
+  	<parameter name="CTcpConnect4" value="client//192.168.123.1:5678" />
+	<parameter name="SUCTION_RPM_NORMAL" value="8500" />
+	<parameter name="AGITATOR_RPM_NORMAL" value="1000" />
+	<parameter name="SUCTION_RPM_TURBO" value="10000" />
+	<parameter name="AGITATOR_RPM_TURBO" value="1200" />
+	<parameter name="MODEL_ID" value="193" />
+	
+  </parameterTable>
+
+</LGRP>

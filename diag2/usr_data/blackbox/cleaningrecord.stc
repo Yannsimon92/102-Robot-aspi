@@ -1,0 +1,55 @@
+<BlackBox>
+	<StatisticCount>
+		<RESET_COUNT count="0"/>
+		<KIDNAP_COUNT count="1"/>
+		<RECOVERY_OK count="0"/>
+		<RECOVERY_FAIL count="1"/>
+		<START_SB count="0"/>
+		<START_ZZ count="5"/>
+		<START_SPOT count="0"/>
+		<START_MACRO count="0"/>
+		<FINISH_SB count="0"/>
+		<FINISH_ZZ count="0"/>
+		<FINISH_SPOT count="0"/>
+		<FINISH_MACRO count="0"/>
+		<ERR_DUSTBIN count="0"/>
+		<ERR_ROBOTLIFT count="0"/>
+		<ERR_LWHEELSTUCK count="0"/>
+		<ERR_RWHEELSTUCK count="0"/>
+		<ERR_AGITATOR count="0"/>
+		<ERR_SUCTION count="0"/>
+		<ERR_ROBOTSTUCK count="0"/>
+		<ERR_WHEELDROP count="0"/>
+		<ERR_ENCODER_L count="0"/>
+		<ERR_ENCODER_R count="0"/>
+		<ERR_MOTOR_L count="0"/>
+		<ERR_MOTOR_R count="0"/>
+		<ERR_MOTOR_RCV count="0"/>
+		<START_RESERV count="0"/>
+		<VOICE_COMEHERE count="0"/>
+		<VOICE_START count="0"/>
+		<VOICE_PAUSE count="0"/>
+		<VOICE_SPOT count="0"/>
+		<VOICE_HOMING count="0"/>
+		<VOICE_WAIT count="0"/>
+		<CURRENTBUMPING count="120"/>
+	</StatisticCount>
+	<StatisticTime>
+		<LAST_CLEAN Sec="1051542768" uSec="726208" DateTime="2003/04/28/15/12/48.726208"/>
+		<FIRST_BOOT Sec="946684822" uSec="763476" DateTime="2000/01/01/00/00/22.763476"/>
+	</StatisticTime>
+	<StatisticCumulateTime>
+		<TOTAL_CLEANTIME Sec="779369" uSec="882108" DateTime="9/00/29/29.882108"/>
+		<TOTAL_RUNTIME Sec="404609976" uSec="703860" DateTime="4682/23/39/36.703860"/>
+		<TOTAL_CARPET Sec="1383" uSec="454619" DateTime="0/00/23/03.454619"/>
+	</StatisticCumulateTime>
+	<Etc>
+		<PRODUCT_INFO value="2016.10.5 11:2:8"/>
+		<VER_REVISION value="16552"/>
+		<VER_REV_DATE value="2015/11/12 15:50:24"/>
+		<VER_REPOSITORY value="http://val.lge.com/hact/svn/IT_MI_RK5/trunk/src"/>
+		<VER_BOOTLOADER value="201"/>
+		<VER_MAINSW value="16552"/>
+		<MODEL_NO value="1762"/>
+	</Etc>
+</BlackBox>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LGRP version="1.0" xmlns="http://www.dmg.org/PMML-3-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema_instance">
+  <Header xmlns="" copyright="LG Electronics">
+    The LGRP for HIT.
+    <Application name="lgrp" version="0.9 beta"/>
+  </Header>
+
+  <parameterTable>
+    <Parameter name="RecordWorkerPriority" value="9" />
+	<parameter name="FrontendWorkerPriority" value="0" />
+    <parameter name="KeywordWorkerPriority" value="0" />
+    <parameter name="MKeywordWorkerPriority" value="0" />	
+    <parameter name="SSLWorkerPriority" value="0" />
+	<parameter name="VRWorkerPriority" value="0" />
+	<parameter name="VREngineType" value="FIONA" />
+	<parameter name="VRPath" value="/usr/VRDB/" />
+	<parameter name="VRCfg" value="/cfg/cfg_RK5HIT.txt" />	
+	<parameter name="VRLanguage" value="KOREAN" />
+    <parameter name="VRSamplingRate" value="16000" />
+	<parameter name="VRForcedTimeOUT" value="10" />
+	<parameter name="VRnCommand" value="9" />
+	<parameter name="VRInputType" value="FEATURE" />
+	<parameter name="RK5_SSL" value="TRUE" />
+	<parameter name="RK5_CLEAN_START" value="TRUE" />
+	<parameter name="RK5_CLEAN_STOP" value="TRUE" />
+	<parameter name="RK5_CHARGE" value="TRUE" />
+	<parameter name="RK5_CLEAN_SPIRAL" value="FALSE" />
+	<parameter name="RK5_SSL_SPIRAL" value="FALSE" />
+	<parameter name="RK4_CLEAN_START" value="FALSE" />
+	<parameter name="RK4_CLEAN_STOP" value="FALSE" />
+	<parameter name="RK4_CHARGE" value="FALSE" />
+	<parameter name="LSDUMPPATH" value="/usr/tmp" />	
+	<parameter name="ENABLE_NS" value="TRUE" />	
+	<parameter name="ENABLE_2CH_ONLY" value="FALSE" />	
+	<parameter name="ENABLE_1CH_2CH_COMBINE" value="TRUE"/>	
+	<parameter name="STRESSTEST" value="FALSE"/>	
+  </parameterTable>
+</LGRP>
+
