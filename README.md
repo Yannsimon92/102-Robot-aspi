@@ -6,7 +6,7 @@ La documentation communautaire existante sur ce mécanisme (`pocketbroadcast/hom
 
 ## Résultat — ✅ résolu
 
-**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par usure mécanique après ~216h d'usage — le fil bleu formait un coude à 180° juste au-dessus du ressort de suspension de la roue, et le mouvement répété de haut en bas du ressort a fini par le sectionner à ce point de pliure. Repéré par l'œil avisé de mon papa, en réanalysant les photos de démontage, puis ressoudé. Le symptôme « base introuvable » (`DockNoSinal` dans la blackbox) n'était qu'une conséquence : le robot ne pouvait pas s'aligner sur le faisceau IR sans sa roue gauche — la base elle-même n'a jamais été en cause.
+**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par usure mécanique après ~216h d'usage — le fil bleu formait un coude à 180° juste au-dessus du ressort de suspension de la roue, et le mouvement répété de haut en bas du ressort a fini par le sectionner à ce point de pliure. Repéré par l'œil avisé de mon papa, en réanalysant les photos de démontage, puis ressoudé par ses soins <3. Le symptôme « base introuvable » (`DockNoSinal` dans la blackbox) n'était qu'une conséquence : le robot ne pouvait pas s'aligner sur le faisceau IR sans sa roue gauche — la base elle-même n'a jamais été en cause.
 
 | Panne | Preuve | Résultat |
 |---|---|---|
