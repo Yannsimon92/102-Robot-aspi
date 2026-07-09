@@ -2,15 +2,15 @@
 
 Diagnostic et réparation, **réussie**, d'un **LG Hom-Bot Square VR6347LV** qui ne s'arrimait plus à sa base et tournait en rond au lieu de nettoyer. Le diagnostic a été mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware — un vrai démontage n'a eu lieu qu'une fois la roue gauche formellement désignée comme coupable.
 
-À notre connaissance, c'est la première documentation publique de ce mécanisme sur le châssis **Square** (la doc communautaire existante — `pocketbroadcast/hombot-tools`, roboter-forum — ne couvrait que la gamme ronde VR63xx/VR64xx). Verdict : le mécanisme est **identique**.
+La documentation communautaire existante sur ce mécanisme (`pocketbroadcast/hombot-tools`, roboter-forum) ne couvrait que la gamme ronde VR63xx/VR64xx. Ce dépôt confirme qu'il est **identique** sur le châssis Square (VR6347LV), point qui n'était pas documenté publiquement avant.
 
 ## Résultat — ✅ résolu
 
-**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par frottement contre un arbre rotatif interne après ~216h d'usage. Repéré par l'œil avisé de mon papa, en réanalysant les photos de démontage, puis ressoudé. Le symptôme « base introuvable » (`DockNoSinal` dans la blackbox) n'était qu'une conséquence : le robot ne pouvait pas s'aligner sur le faisceau IR sans sa roue gauche — la base elle-même n'a jamais été en cause.
+**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par usure mécanique après ~216h d'usage — le fil bleu formait un coude à 180° juste au-dessus du ressort de suspension de la roue, et le mouvement répété de haut en bas du ressort a fini par le sectionner à ce point de pliure. Repéré par l'œil avisé de mon papa, en réanalysant les photos de démontage, puis ressoudé. Le symptôme « base introuvable » (`DockNoSinal` dans la blackbox) n'était qu'une conséquence : le robot ne pouvait pas s'aligner sur le faisceau IR sans sa roue gauche — la base elle-même n'a jamais été en cause.
 
 | Panne | Preuve | Résultat |
 |---|---|---|
-| Le **module de roue gauche ne motrice plus** (le robot pivote sur place au lieu de nettoyer) | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant ; log de session vide (jamais de phase de nettoyage, pare-chocs muet) | ✅ **Résolu** — fil sectionné, ressoudé, gaine thermorétractable, fil reroutée à l'écart de l'arbre |
+| Le **module de roue gauche ne motrice plus** (le robot pivote sur place au lieu de nettoyer) | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant ; log de session vide (jamais de phase de nettoyage, pare-chocs muet) | ✅ **Résolu** — fil sectionné à un coude, ressoudé, gaine thermorétractable, fil reroutée à l'écart du ressort de suspension |
 | L'**arrimage à la base échouait** (`DockNoSinal` : aucun signal IR reçu à ~30 cm de la base) | Blackbox + chronologie montrant que tout cassait dans la même fenêtre de sessions (457→460) | ✅ **Résolu par la même réparation** — le robot s'arrime de nouveau tout seul |
 
 ## Contenu du dépôt
@@ -109,12 +109,12 @@ Deux pannes simultanées étant statistiquement suspectes, retour sur la chronol
 
 Robot ouvert (capot inférieur déposé) : blocs roue L/R accessibles, chacun avec moteur DC + disque d'encodeur + carte encodeur (réf. EBR743xx) + microswitch de roue pendante.
 
-- **Cause trouvée à l'œil**, en réanalysant les photos de démontage, par mon papa : un fil du faisceau moteur/encodeur gauche était **sectionné**, juste au niveau d'un arbre rotatif voisin — très probablement happé et cisaillé par cet arbre au fil des ~216h d'usage plutôt qu'un défaut de fabrication
-- Dénudage des deux brins, torsadage, **soudure**, gaine thermorétractable, fil reroutée à l'écart de l'arbre pour éviter la récidive
+- **Cause trouvée à l'œil**, en réanalysant les photos de démontage, par mon papa : un fil du faisceau moteur/encodeur gauche était **sectionné** à l'endroit où il formait un coude à 180° juste au-dessus du ressort de suspension de la roue — le mouvement répété de haut en bas du ressort a fini par le cisailler à ce pli au fil des ~216h d'usage, plutôt qu'un défaut de fabrication
+- Dénudage des deux brins, torsadage, **soudure**, gaine thermorétractable, fil reroutée pour éliminer le coude et l'écarter du débattement du ressort
 - Test à la télécommande après réparation : tourner à droite et tout droit fonctionnent à nouveau normalement
 - Test d'arrimage automatique (homing normal) : **le robot s'arrime à nouveau tout seul** ✅
 
-**Conclusion finale** : fil sectionné par frottement contre un arbre rotatif interne — réparé par soudure. Pas besoin de remplacer moteur, encodeur, carte mère ou base de charge. Le `DockNoSinal` était bien une conséquence de la roue morte, pas une base HS.
+**Conclusion finale** : fil sectionné par usure mécanique au niveau d'un coude à 180°, sous l'effet du débattement répété du ressort de suspension de la roue — réparé par soudure. Pas besoin de remplacer moteur, encodeur, carte mère ou base de charge. Le `DockNoSinal` était bien une conséquence de la roue morte, pas une base HS.
 
 ## ⚠️ Avertissement
 
