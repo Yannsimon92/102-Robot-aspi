@@ -1,15 +1,17 @@
 # Diagnostic LG Hom-Bot Square VR6347LV
 
-Diagnostic (et réparation) d'un **LG Hom-Bot Square VR6347LV** en panne (ne s'arrimait plus à sa base, tournait en rond au lieu de nettoyer). Le diagnostic a été mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware — un vrai démontage n'a eu lieu qu'une fois la roue gauche formellement désignée comme coupable.
+Diagnostic et réparation, **réussie**, d'un **LG Hom-Bot Square VR6347LV** qui ne s'arrimait plus à sa base et tournait en rond au lieu de nettoyer. Le diagnostic a été mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware — un vrai démontage n'a eu lieu qu'une fois la roue gauche formellement désignée comme coupable.
 
 À notre connaissance, c'est la première documentation publique de ce mécanisme sur le châssis **Square** (la doc communautaire existante — `pocketbroadcast/hombot-tools`, roboter-forum — ne couvrait que la gamme ronde VR63xx/VR64xx). Verdict : le mécanisme est **identique**.
 
-## Résultat du diagnostic
+## Résultat du diagnostic — ✅ résolu
 
-| Panne | Preuve | Statut |
+**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par frottement contre un arbre rotatif interne après ~216h d'usage. Repéré à l'œil (par le père de l'utilisateur, en réanalysant les photos de démontage) puis ressoudé. Le symptôme « base introuvable » (`DockNoSinal` dans la blackbox) n'était qu'une conséquence : le robot ne pouvait pas s'aligner sur le faisceau IR sans sa roue gauche — la base elle-même n'a jamais été en cause.
+
+| Panne | Preuve | Résultat |
 |---|---|---|
-| Le **module de roue gauche ne motrice plus** (le robot pivote sur place au lieu de nettoyer) | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant ; log de session vide (jamais de phase de nettoyage, pare-chocs muet) | ✅ **Résolu** — un fil du faisceau moteur/encodeur gauche était sectionné (frottement contre un arbre rotatif voisin). Ressoudé, gaine thermorétractable, fil reroutée à l'écart de l'arbre. Roue fonctionnelle depuis. |
-| L'**arrimage à la base échoue** (`DockNoSinal` : aucun signal IR reçu à ~30 cm de la base) | Blackbox + test caméra de smartphone négatif sur les émetteurs de la base | **À revérifier** : la chronologie de la blackbox montrait que tout cassait dans la même fenêtre de sessions (457→460), suggérant que le `DockNoSinal` n'était peut-être qu'une conséquence de la roue morte (alignement final impossible sans elle). À retester maintenant que la roue est réparée. |
+| Le **module de roue gauche ne motrice plus** (le robot pivote sur place au lieu de nettoyer) | Pilotage manuel à la télécommande : gauche OK, droite KO, dérive à gauche en marche avant ; log de session vide (jamais de phase de nettoyage, pare-chocs muet) | ✅ **Résolu** — fil sectionné, ressoudé, gaine thermorétractable, fil reroutée à l'écart de l'arbre |
+| L'**arrimage à la base échouait** (`DockNoSinal` : aucun signal IR reçu à ~30 cm de la base) | Blackbox + chronologie montrant que tout cassait dans la même fenêtre de sessions (457→460) | ✅ **Résolu par la même réparation** — le robot s'arrime de nouveau tout seul |
 
 Détail complet (méthode, journal des essais, analyse des logs, démontage, réparation) dans [DIAGNOSTIC.md](DIAGNOSTIC.md).
 

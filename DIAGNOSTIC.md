@@ -127,13 +127,18 @@ Robot ouvert (capot inférieur déposé) : blocs roue L/R accessibles, chacun av
 
 - [x] Démonter le robot (capot inférieur)
 - [x] Inspection visuelle des connecteurs moteur gauche
-- [x] **Cause trouvée à l'œil, en 2e analyse des photos** : un fil du faisceau du moteur/encodeur gauche était **sectionné**, juste au niveau d'un arbre rotatif voisin — très probablement happé et cisaillé par cet arbre au fil des ~216h d'usage plutôt qu'un défaut de fabrication
-- [x] Dénudage des deux brins, torsadage, **soudure**, gaine thermorétractable, fil reroutée à l'écart de l'arbre pour éviter la récidive
+- [x] **Cause trouvée à l'œil, en 2e analyse des photos, par le père de l'utilisateur** : un fil du faisceau du moteur/encodeur gauche était **sectionné**, juste au niveau d'un arbre rotatif voisin — très probablement happé et cisaillé par cet arbre au fil des ~216h d'usage plutôt qu'un défaut de fabrication
+- [x] Dénudage des deux brins, torsadage, **soudure (par le père de l'utilisateur)**, gaine thermorétractable, fil reroutée à l'écart de l'arbre pour éviter la récidive
 - [x] Test à la télécommande après réparation : **tourner à droite et tout droit fonctionnent à nouveau normalement**
+- [x] Test d'arrimage automatique (homing normal, pas manuel) : **le robot s'arrime à nouveau tout seul** ✅
 
 **Verdict final : fil sectionné par frottement contre un arbre rotatif interne — réparé par soudure.** Pas besoin de remplacer moteur, encodeur ou carte mère. Tous les tests plus poussés (pile 9V, test croisé, réducteur) sont devenus inutiles : la cause était visuelle, avant même de les exécuter.
 
-- [ ] Retester le test caméra IR de la base dans le noir, maintenant que la roue est réparée (voir « Cause unique ? »)
+**La panne « base » n'en était pas une** : l'hypothèse de la « Cause unique ? » ci-dessus se confirme — le `DockNoSinal` était une conséquence de la roue morte (le robot ne pouvait pas s'aligner sur le faisceau IR), pas une base HS. Pas besoin d'ouvrir ni de remplacer la base.
+
+## ✅ Diagnostic clos (09/07/2026)
+
+**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par frottement contre un arbre rotatif interne après ~216h d'usage. Réparé par soudure. Le robot nettoie et s'arrime de nouveau normalement.
 
 ### Bonus découverts dans `rc.local` (mécanismes officiels du firmware)
 - Un dossier `blackbox/` à la racine de la clé déclenche `/usr/rscript/blackbox.sh` (export officiel de la boîte noire)
