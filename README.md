@@ -20,6 +20,7 @@ La documentation communautaire existante sur ce mécanisme (`pocketbroadcast/hom
 | [update.sh](update.sh) | Script de dump à copier à la racine d'une clé USB FAT32. Lecture/copie uniquement. Copie blackbox, config et logs vers la clé. |
 | [diag/](diag/) | Dump n°1 : identité système, points de montage, `dmesg`, arborescence complète du robot. |
 | [diag2/](diag2/) | Dump n°2 : `rc.local`, config applicative (`/usr/rcfg`), erreur carte mère, statistiques. Les données privées (cartes du logement, SLAM, trajectoires, n° de série) sont exclues du dépôt via `.gitignore`. |
+| [photos/](photos/) | Photos du démontage et du fil sectionné (voir section « Réparation » ci-dessous). |
 
 ## Contexte matériel/logiciel
 
@@ -109,7 +110,17 @@ Deux pannes simultanées étant statistiquement suspectes, retour sur la chronol
 
 Robot ouvert (capot inférieur déposé) : blocs roue L/R accessibles, chacun avec moteur DC + disque d'encodeur + carte encodeur (réf. EBR743xx) + microswitch de roue pendante.
 
+![Vue d'ensemble du robot ouvert par le dessous](photos/robot-demonte-vue-ensemble.jpg)
+*Robot ouvert par le dessous : blocs roue gauche (L) et droite (R), carte mère LG EBR8146 au centre, turbine d'aspiration en bas.*
+
+![Zone du connecteur moteur/encodeur de la roue gauche](photos/roue-gauche-connecteur-carte-encodeur.jpg)
+*Module de roue gauche : moteur DC, disque d'encodeur contre la carte « Wheel » (réf. EBR743xx), faisceau de câbles vers la carte mère.*
+
 - **Cause trouvée à l'œil**, en réanalysant les photos de démontage, par mon papa : un fil du faisceau moteur/encodeur gauche était **sectionné** à l'endroit où il formait un coude à 180° juste au-dessus du ressort de suspension de la roue — le mouvement répété de haut en bas du ressort a fini par le cisailler à ce pli au fil des ~216h d'usage, plutôt qu'un défaut de fabrication
+
+![Gros plan sur le fil sectionné, au niveau du coude à 180° juste au-dessus du ressort de suspension](photos/fil-sectionne-point-de-pliure.jpg)
+*Le point de la panne : le fil bleu (à gauche du connecteur blanc) forme un coude serré juste au-dessus du ressort de suspension de la roue — c'est là qu'il a été sectionné par l'usure.*
+
 - Dénudage des deux brins, torsadage, **soudure**, gaine thermorétractable, fil reroutée pour éliminer le coude et l'écarter du débattement du ressort
 - Test à la télécommande après réparation : tourner à droite et tout droit fonctionnent à nouveau normalement
 - Test d'arrimage automatique (homing normal) : **le robot s'arrime à nouveau tout seul** ✅
