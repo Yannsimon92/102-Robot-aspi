@@ -1,12 +1,12 @@
 # Diagnostic LG Hom-Bot Square VR6347LV
 
-Diagnostic et réparation, **réussie**, d'un **LG Hom-Bot Square VR6347LV** qui ne s'arrimait plus à sa base et tournait en rond au lieu de nettoyer. Le diagnostic a été mené **sans démontage et sans modification du robot** : uniquement par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware — un vrai démontage n'a eu lieu qu'une fois la roue gauche formellement désignée comme coupable.
+Diagnostic et réparation, **réussie**, d'un **LG Hom-Bot Square VR6347LV** qui ne s'arrimait plus à sa base et tournait en rond au lieu de nettoyer. Le diagnostic a été initialement mené sans démontage par extraction de logs via clé USB, en exploitant le mécanisme `update.sh` du firmware — un vrai démontage n'a eu lieu qu'une fois la roue gauche formellement désignée comme coupable.
 
 La documentation communautaire existante sur ce mécanisme (`pocketbroadcast/hombot-tools`, roboter-forum) ne couvrait que la gamme ronde VR63xx/VR64xx. Ce dépôt confirme qu'il est **identique** sur le châssis Square (VR6347LV), point qui n'était pas documenté publiquement avant.
 
 ## Résultat — ✅ résolu
 
-**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par usure mécanique après ~216h d'usage — le fil bleu formait un coude à 180° juste au-dessus du ressort de suspension de la roue, et le mouvement répété de haut en bas du ressort a fini par le sectionner à ce point de pliure. Repéré par l'œil avisé de mon papa, en réanalysant les photos de démontage, puis ressoudé par ses soins <3. Le symptôme « base introuvable » (`DockNoSinal` dans la blackbox) n'était qu'une conséquence : le robot ne pouvait pas s'aligner sur le faisceau IR sans sa roue gauche — la base elle-même n'a jamais été en cause.
+**Une seule panne réelle** : un fil du faisceau moteur/encodeur de la roue gauche, sectionné par usure mécanique après ~216h d'usage — le fil bleu formait un coude à 180° juste au-dessus du ressort de suspension de la roue, et le mouvement répété de haut en bas du ressort a fini par le sectionner à ce point de pliure. Repéré par l'œil avisé de mon père puis ressoudé par ses soins <3. Le symptôme « base introuvable » (`DockNoSinal` dans la blackbox) n'était qu'une conséquence : le robot ne pouvait pas s'aligner sur le faisceau IR sans sa roue gauche — la base elle-même n'est finalement pas en cause.
 
 | Panne | Preuve | Résultat |
 |---|---|---|
@@ -61,9 +61,7 @@ Le robot n'a pas réagi à la clé : `update.sh` intact, aucun fichier écrit. C
 Avec le marqueur, le script a tourné jusqu'au bout (dump complet dans [diag/](diag/)).
 - **Mécanisme identique à la gamme ronde** : clé montée sur `/mnt/usb`, script lancé par `/usr/etc/rc.local`, applicatif `rpmain.axf` dans `/usr/rbin`, config XML dans `/usr/rcfg`
 - `/var` est un tmpfs de 512 Ko → `/var/log` ne contient rien d'utile
-- `dmesg` propre : aucune erreur matérielle au boot. Pas de RTC : les dates de fichiers sont fantaisistes, seuls les numéros de session font foi
 - **Boîte noire trouvée dans `/usr/data/blackbox`** : `LastMainboardError.txt`, cartes `MAPDATA*.blk`, journaux de session `cleanlog*.bbl` (sessions 421→470)
-- **Indice fort** : les cleanlogs des sessions récentes (458→470) font tous < 700 octets contre 20–60 Ko avant → les sessions avortent quasi immédiatement
 
 ### Essai n°3 — blackbox récupérée, premier verdict (base) ✅⚠️
 
@@ -81,7 +79,7 @@ Dump complet dans [diag2/](diag2/). Preuves, par ordre d'importance :
 
 Symptôme complémentaire : au lancement d'un nettoyage, le robot pivote sur place (~40°, avant/arrière, vers la gauche) et ne nettoie jamais.
 
-**Session test 475** (nettoyage lancé ~4 min sans intervention) : log quasi vide — `Begin`, `VC_MAP_ROT_READY/ACK` (vision OK), puis rien pendant 3 min 40 (aucun `RobotPose`, aucun `Bumping`). Le robot n'entre jamais en phase de nettoyage ; le pare-chocs est électriquement muet (pas grippé).
+**Session test 475** (nettoyage lancé ~4 min sans intervention) : log quasi vide — `Begin`, `VC_MAP_ROT_READY/ACK` (vision OK), puis rien pendant 3 min 40 (aucun `RobotPose`, aucun `Bumping`). Le robot n'entre jamais en phase de nettoyage.
 
 **Test décisif — pilotage manuel à la télécommande** (commande moteur directe, sans navigation) :
 - Tourner à gauche : OK (mouvement porté par la roue droite)
@@ -116,11 +114,12 @@ Robot ouvert (capot inférieur déposé) : blocs roue L/R accessibles, chacun av
 ![Zone du connecteur moteur/encodeur de la roue gauche](photos/roue-gauche-connecteur-carte-encodeur.jpg)
 *Module de roue gauche : moteur DC, disque d'encodeur contre la carte « Wheel » (réf. EBR743xx), faisceau de câbles vers la carte mère.*
 
-- **Cause trouvée à l'œil**, en réanalysant les photos de démontage, par mon papa : un fil du faisceau moteur/encodeur gauche était **sectionné** à l'endroit où il formait un coude à 180° juste au-dessus du ressort de suspension de la roue — le mouvement répété de haut en bas du ressort a fini par le cisailler à ce pli au fil des ~216h d'usage, plutôt qu'un défaut de fabrication
+- **Cause trouvée à l'œil**, par mon papa : un fil du faisceau moteur/encodeur gauche était **sectionné** à l'endroit où il formait un coude à 180° juste au-dessus du ressort de suspension de la roue — le mouvement répété de haut en bas du ressort a fini par le cisailler à ce pli au fil des ~216h d'usage, plutôt qu'un défaut de fabrication
 
 ![Gros plan sur le fil sectionné, au niveau du coude à 180° juste au-dessus du ressort de suspension](photos/fil-sectionne-point-de-pliure.jpg)
 *Le point de la panne : le fil bleu (à gauche du connecteur blanc) forme un coude serré juste au-dessus du ressort de suspension de la roue — c'est là qu'il a été sectionné par l'usure.*
 
+Réparation effectuée par mon père :
 - Dénudage des deux brins, torsadage, **soudure**, gaine thermorétractable, fil reroutée pour éliminer le coude et l'écarter du débattement du ressort
 - Test à la télécommande après réparation : tourner à droite et tout droit fonctionnent à nouveau normalement
 - Test d'arrimage automatique (homing normal) : **le robot s'arrime à nouveau tout seul** ✅
